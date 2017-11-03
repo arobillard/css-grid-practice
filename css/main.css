@@ -9,6 +9,37 @@
 .navbar a {
   text-decoration: none;
   transition: all 250ms;
+  position: relative;
+}
+
+.navbar a::after {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  color: #fff;
+}
+
+.navbar a:hover::after {
+  animation: Shake .75s ease-in-out infinite;
+}
+
+.navbar li:first-child a::after {
+  content: "Home";
+}
+
+.navbar li:nth-child(2) a::after {
+  content: "Portfolio";
+}
+
+.navbar li:nth-child(3) a::after {
+  content: "About";
+}
+
+.navbar li:nth-child(4) a::after {
+  content: "Contact";
 }
 
 .banner {
@@ -25,8 +56,217 @@
   transform: translate(-50%, -50%);
 }
 
+h1 {
+  position: relative;
+  animation: shakeH1 10s ease-in-out infinite;
+}
+
+h1::after {
+  content: "CSS Grid";
+  position: absolute;
+  color: #fff;
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: shakeH1after 10s ease-in-out infinite;
+}
+
+.banner p {
+  display: inline-block;
+}
+
+.banner p::after {
+  content: "Exploring the uses of CSS Grids.";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  text-align: left;
+  overflow: hidden;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  transition: all 250ms ease-in-out;
+}
+
+.banner p:hover::after {
+  width: 100%;
+}
+
+@keyframes shakeH1 {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  29% {
+    transform: translate(0, 0%) scale(1);
+  }
+
+  29.25% {
+    transform: translate(-5%, 5%) scale(1.3);
+  }
+
+  29.5% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  99.5% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  99.75% {
+    transform: translate(-10%, -10%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+}
+
+@keyframes shakeH1after {
+
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  29% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+  29.25% {
+    transform: translate(-55%, -45%) scale(1.3);
+    opacity: 1;
+  }
+
+  29.5% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+  99.5% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+  99.75% {
+    transform: translate(-60%, -60%) scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+}
+
 .content-wrap {
   padding: .65rem;
+}
+
+.btn-green-ghost::after {
+  content: "Start";
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: inline-block;
+  padding: .25rem .875rem .5rem;
+  border: 4px solid #fff;
+  border-radius: .75em;
+  text-align: center;
+  text-decoration: none;
+  font-family: "PT Sans", sans-serif;
+  transition:
+    background-color 250ms,
+    border-color 250ms,
+    color 250ms;
+  animation: Shake .75s ease-in-out infinite;
+}
+
+.btn-green-ghost:hover::after {
+  animation: none;
+  /*display: none;*/
+}
+
+@keyframes Shake {
+
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+  7% {
+    opacity: 1;
+  }
+
+  10% {
+    transform: translate(-49%, -48%) scale(1.1);
+    opacity: .8;
+  }
+
+  17% {
+    opacity: .1;
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  26% {
+    transform: translate(-49%, -49%);
+    opacity: 0;
+  }
+
+  37% {
+    opacity: .3;
+  }
+
+  45% {
+    opacity: .9;
+  }
+
+  58% {
+    opacity: .7;
+  }
+
+  60% {
+    transform: translate(-45%, -47%);
+    opacity: 0;
+  }
+
+  63% {
+    opacity: .7;
+  }
+
+  70% {
+    transform: translate(-52%, -48%);
+    opacity: .3;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: .9;
+  }
+
+  95% {
+    opacity: .7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
 }
 
 .mastfoot {
@@ -70,8 +310,37 @@
   }
 
   .navbar a {
-    color: #fff;
+    color: #70ff70;
+    /*position: relative;*/
   }
+
+  .navbar .absolute {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    opacity: 0;
+  }
+
+  .navbar a:hover ~ .navbar .absolute,
+  .navbar .absolute:hover {
+    animation: Shake .75s ease-in-out infinite;
+  }
+
+  /*.navbar a::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    transition: width 250ms ease-in-out;
+    border-bottom: 3px solid #70ff70;
+  }
+
+  .navbar a:hover::after {
+    width: 100%;
+  }*/
 
   .banner {
     grid-area: banner;
